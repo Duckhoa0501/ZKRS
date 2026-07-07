@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relay Server - Audit & Control Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Boxicons CDN link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body style="overflow-y: auto;">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <div class="brand-icon"><i class='bx bx-shield-quarter'></i></div>
+            <span class="brand-name">Zero-Knowledge Relay Server (ZKRS)</span>
+        </a>
+        <div class="nav-links">
+            <a href="/employee" class="nav-link">Nhân viên (Alice)</a>
+            <a href="/boss" class="nav-link">Sếp (Bob)</a>
+            <a href="/server" class="nav-link active">Relay Server</a>
+        </div>
+    </nav>
+
+    <!-- Main Workspace -->
+    <main class="container" style="padding: 24px 24px;">
+        <div class="workspace-layout" style="grid-template-columns: 1.1fr 0.9fr;">
+            
+            <!-- Left Side: Live scrolling audit logs -->
+            <section class="card">
+                <div class="card-body" style="height: 520px; overflow: hidden; display: flex; flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 16px;">
+                        <h2 class="card-title" style="margin-bottom: 0;">
+                            🖥️ Nhật Ký Kiểm Toán (Audit Logs)
+                        </h2>
+                        <span class="status-indicator online" style="background-color: var(--color-warning); box-shadow: 0 0 8px var(--color-warning-glow);"></span>
+                    </div>
+
+                    <div class="console-window" style="flex-grow: 1; display: flex; flex-direction: column;">
+                        <div class="console-header">
+                            <span class="console-dot red"></span>
+                            <span class="console-dot yellow"></span>
+                            <span class="console-dot green"></span>
+                            <span class="console-title">audit.log (Live Monitor)</span>
+                        </div>
+                        <div class="console-body" id="log-monitor-body">
+                            <div class="log-item text-muted">Connecting to server API logging stream...</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Databases tabs -->
+            <section class="card">
+                <div class="card-body" style="height: 520px; display: flex; flex-direction: column;">
+                    <div class="tabs-container">
+                        <button class="tab-link active" id="btn-tab-keys">Cơ Sở Dữ Liệu Khóa</button>
+                        <button class="tab-link" id="btn-tab-nonces">Bộ Nhớ Đệm Nonce</button>
+                    </div>
+
+                    <!-- Panel 1: Key Registry -->
+                    <div class="tab-panel" id="panel-keys" style="flex-grow: 1; overflow-y: auto;">
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Người dùng</th>
+                                        <th>Public Key PEM (secp256r1)</th>
+                                        <th>Trạng thái</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="keys-table-body">
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted" style="padding: 20px;">Đang truy vấn khóa từ Server...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: Nonce Cache -->
+                    <div class="tab-panel hidden" id="panel-nonces" style="flex-grow: 1; overflow-y: auto;">
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Transaction Nonce</th>
+                                        <th>Hết Hạn (TTL)</th>
+                                        <th>Tình Trạng</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="nonces-table-body">
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted" style="padding: 20px;">Không có Nonce hoạt động nào trong Cache.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 ZKRS Enterprise System. Phát triển và triển khai theo tiêu chuẩn FIT4012.</p>
+    </footer>
+
+    <!-- App Logic -->
+    <script src="/static/js/server.js"></script>
+</body>
+</html>

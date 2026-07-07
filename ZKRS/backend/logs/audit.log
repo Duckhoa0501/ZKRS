@@ -1,0 +1,75 @@
+2026-07-07 12:04:09 [INFO] - AUDIT: Người dùng 'alice' đăng ký thành công.
+2026-07-07 12:04:09 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 12:04:31 [INFO] - AUDIT: Người dùng 'bob' đăng ký thành công.
+2026-07-07 12:04:31 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:04:35 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 18fc6a3a-540e-4362-a0b5-d776fa3ff062
+2026-07-07 12:04:39 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 12:07:14 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 12:09:46 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 91711232-26b0-40b9-9b06-aad74daa08d0
+2026-07-07 12:14:22 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:14:27 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:14:30 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 12:14:37 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 12:14:43 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 03d3cd56-a3f8-45c6-855d-4531bd3fd8db
+2026-07-07 12:14:46 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:14:47 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 12:15:17 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:15:37 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 12:15:47 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 3c5af52a-731e-4ef7-b02d-853e3b596c15
+2026-07-07 12:15:53 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:15:55 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 12:16:47 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:16:52 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 12:17:09 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: ca849528-79c4-4d98-817a-04a666c5390a
+2026-07-07 12:17:11 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 12:17:31 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 7e59fe26-97c3-491e-8a58-1ef6d0f63943
+2026-07-07 12:17:33 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 12:22:50 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 12:22:54 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:54:45 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:54:53 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 12:55:12 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 12:55:23 [WARNING] - Bác bỏ gói tin: Timestamp bị lệch quá hạn. Client: 1783403123.679, Server: 1783403723.6856863
+2026-07-07 12:55:31 [WARNING] - Bác bỏ gói tin: Timestamp bị lệch quá hạn. Client: 1783403131.587, Server: 1783403731.589611
+2026-07-07 12:56:02 [WARNING] - Bác bỏ gói tin: Timestamp bị lệch quá hạn. Client: 1783403162.407, Server: 1783403762.4138038
+2026-07-07 12:58:27 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 12:59:36 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 12:59:43 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 082e1375-47d4-4a48-a3f9-658b1e3952e9
+2026-07-07 12:59:48 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 12:59:52 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 13:00:53 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 13:00:55 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 13:00:59 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 8f0e4eec-59e9-4134-ada2-0f731bddc13d
+2026-07-07 13:01:01 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 13:01:16 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 094963a0-a824-41b8-9385-90d4a34010c6
+2026-07-07 13:01:19 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 13:01:21 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 13:04:53 [INFO] - AUDIT: Người dùng 'alice' đăng ký thành công.
+2026-07-07 13:04:53 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 13:05:01 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 13:05:03 [INFO] - AUDIT: Người dùng 'bob' đăng ký thành công.
+2026-07-07 13:05:03 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 13:06:28 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 13:06:30 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 13:06:48 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 13:10:05 [INFO] - AUDIT: Người dùng 'alice' đăng ký thành công.
+2026-07-07 13:10:05 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 13:10:18 [INFO] - AUDIT: Người dùng 'bob' đăng ký thành công.
+2026-07-07 13:10:18 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 13:10:20 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: b303a630-7da1-4ba8-bc24-fa076bc42604
+2026-07-07 13:10:22 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 14:29:19 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 14:30:07 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 14:31:34 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 43b0768b-6e47-4d25-9656-db123be119c5
+2026-07-07 14:31:38 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 14:59:10 [INFO] - AUDIT: Khóa công khai của 'alice' đã được tải lên.
+2026-07-07 14:59:10 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.
+2026-07-07 14:59:18 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: c8d9944c-ede1-4c58-adee-26127f8e930e
+2026-07-07 14:59:28 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 15:31:16 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 6da674a5-d483-4da8-aa75-15a16c2fc390
+2026-07-07 15:31:17 [WARNING] - PHÁT HIỆN TẤN CÔNG PHÁT LẠI (REPLAY ATTACK)! Nonce 8c56d554-ae42-4118-927e-d44f2d210d07 đã được sử dụng.
+2026-07-07 15:31:21 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 15:31:50 [INFO] - AUDIT_SUCCESS: Chuyển tiếp báo cáo từ 'alice' sang 'bob'. Session: 0c3590bb-3f41-43a8-8b6d-680dd9957a5a
+2026-07-07 15:31:51 [WARNING] - PHÁT HIỆN TẤN CÔNG PHÁT LẠI (REPLAY ATTACK)! Nonce bcf337bc-fb30-482b-9608-a6be77853c19 đã được sử dụng.
+2026-07-07 15:31:54 [INFO] - AUDIT: Người dùng 'bob' lấy thành công 1 báo cáo.
+2026-07-07 16:18:39 [INFO] - AUDIT: Khóa công khai của 'bob' đã được tải lên.

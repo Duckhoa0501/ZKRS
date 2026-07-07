@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Portal - ZKRS Messenger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Boxicons CDN link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/css/style.css?v=2.2">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <div class="brand-icon"><i class='bx bx-shield-quarter'></i></div>
+            <span class="brand-name">Zero-Knowledge Corporate Messenger</span>
+        </a>
+        <div class="nav-links">
+            <span class="nav-badge">Kênh Truyền: Nhân Viên &rarr; Sếp</span>
+        </div>
+    </nav>
+
+    <!-- Main Workspace Split Layout -->
+    <div class="split-layout">
+        
+        <!-- 1. Left Sidebar: Contacts -->
+        <aside class="chat-sidebar">
+            <div class="sidebar-header">
+                <h2>Chats</h2>
+            </div>
+            <div class="contact-list">
+                <div class="contact-item active">
+                    <div class="contact-avatar-wrapper">
+                        <div class="contact-avatar bg-boss">B</div>
+                        <span class="status-dot online"></span>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-name">Sếp (Bob)</div>
+                        <div class="contact-last-msg">Người nhận báo cáo</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 2. Center Panel: Chat Window -->
+        <section class="chat-pane">
+            <div class="chat-header">
+                <div class="chat-user-details">
+                    <div class="contact-avatar bg-boss" style="width: 38px; height: 38px; font-size: 14px;">B</div>
+                    <div>
+                        <div class="chat-user-name">Sếp (Bob)</div>
+                        <div class="chat-user-status">
+                            <span class="status-indicator online"></span>
+                            <span>Kết nối trực tiếp E2EE</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="status-alert-box" class="alert alert-info" style="margin-bottom: 0; padding: 6px 12px; font-size: 11.5px;">
+                    Đang thiết lập khóa...
+                </div>
+            </div>
+
+            <!-- Messages stream -->
+            <div class="message-stream" id="chat-messages">
+                <div class="message-bubble-wrapper received">
+                    <div class="message-meta-info">Sếp (Bob)</div>
+                    <div class="message-bubble">
+                        Chào cậu, gửi các báo cáo tài chính quý 2 định dạng Excel hoặc tài liệu dạng văn bản lên đây nhé. Hệ thống tự động mã hóa đầu cuối rồi.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input bar -->
+            <div class="chat-input-bar">
+                
+                <!-- File Attachment select -->
+                <label for="attachment-input" class="attachment-label" title="Đính kèm tài liệu (.txt, .xlsx, .csv)">
+                    <i class='bx bx-paperclip'></i>
+                </label>
+                <input type="file" id="attachment-input" class="file-input" accept=".txt,.xlsx,.xls,.csv,.doc,.docx">
+                
+                <!-- File selection badge indicators -->
+                <div id="selected-file-badge" class="file-selected-badge hidden">
+                    <span id="selected-file-name">file.xlsx</span>
+                    <button id="btn-cancel-file" title="Hủy đính kèm">&times;</button>
+                </div>
+
+                <input type="text" id="message-text-input" class="chat-input" placeholder="Nhập tin nhắn bảo mật gửi cho Sếp...">
+                
+                <button id="btn-send-message" class="btn-send" title="Gửi tin nhắn mã hóa">
+                    <i class='bx bx-send'></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. Right Sidebar: Cryptography & Attack Scenarios -->
+        <aside class="right-sidebar">
+            
+            <div class="crypto-details">
+                <h3>🔑 Thông Số Khóa Doanh Nghiệp</h3>
+                <div class="crypto-row">
+                    <span class="crypto-label">Vai trò:</span>
+                    <span class="crypto-value">Nhân Viên (Alice)</span>
+                </div>
+                <div class="crypto-row">
+                    <span class="crypto-label">Đường cong ECC:</span>
+                    <span class="crypto-value">secp256r1 (P-256)</span>
+                </div>
+                <div class="crypto-row">
+                    <span class="crypto-label">Khóa Công Khai:</span>
+                    <span class="crypto-value" id="alice-pub-key-display">Đang tạo...</span>
+                </div>
+                <div class="crypto-row">
+                    <span class="crypto-label">Khóa Đối Xứng:</span>
+                    <span class="crypto-value text-cyan" id="alice-aes-key-display">Chưa tạo</span>
+                </div>
+            </div>
+
+            <div class="dev-options">
+                <h4>Cấu Hình Thử Nghiệm Bảo Mật</h4>
+                <div class="dev-buttons">
+                    <button id="btn-mode-normal" class="btn btn-outline active">Chế độ bình thường</button>
+                    <button id="btn-mode-expired" class="btn btn-outline">Timestamp hết hạn (Chống Replay)</button>
+                    <button id="btn-mode-replay" class="btn btn-outline">Gửi lặp gói tin (Replay Attack)</button>
+                </div>
+            </div>
+
+            <div style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                <strong>Mật mã học E2EE:</strong> Mọi tin nhắn hoặc tệp đính kèm khi gửi đi đều được mã hóa bằng thuật toán <strong>AES-GCM-256</strong> ở thiết bị đầu cuối. Server trung gian hoàn toàn không có khả năng đọc được nội dung báo cáo.
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- Script loading -->
+    <script src="/static/js/employee.js?v=2.2"></script>
+</body>
+</html>

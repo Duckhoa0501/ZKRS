@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZKRS - Cổng Giao Tiếp Mật Mã Doanh Nghiệp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Boxicons CDN -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/css/style.css">
+    
+    <style>
+        /* CSS nội bộ đặc thù dành riêng cho trang chào Portal cao cấp */
+        body {
+            background: radial-gradient(circle at 50% 0%, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 60px 20px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .compliance-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--color-primary-light);
+            color: var(--color-primary);
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0, 132, 255, 0.08);
+            border: 1px solid rgba(0, 132, 255, 0.15);
+        }
+
+        .hero-title {
+            font-size: 40px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            color: #0f172a;
+            margin-bottom: 16px;
+        }
+
+        .hero-title span {
+            background: linear-gradient(135deg, #0084ff 0%, #0ea5e9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Nâng cấp Card Portal */
+        .portal-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px -2px rgba(148, 163, 184, 0.08), 0 2px 8px -1px rgba(148, 163, 184, 0.04);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        .portal-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(148, 163, 184, 0.15), 0 10px 10px -5px rgba(148, 163, 184, 0.04);
+        }
+
+        .portal-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .card-employee::before { background: var(--color-primary); }
+        .card-server::before { background: #f59e0b; }
+        .card-boss::before { background: var(--color-success); }
+
+        .portal-card:hover.card-employee { border-color: rgba(0, 132, 255, 0.4); }
+        .portal-card:hover.card-server { border-color: rgba(245, 158, 11, 0.4); }
+        .portal-card:hover.card-boss { border-color: rgba(16, 185, 129, 0.4); }
+
+        .portal-body {
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+        }
+
+        .icon-wrapper {
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+            transition: all 0.3s;
+        }
+        
+        .card-employee .icon-wrapper { background-color: #f0f9ff; color: var(--color-primary); }
+        .card-server .icon-wrapper { background-color: #fffbeb; color: #d97706; }
+        .card-boss .icon-wrapper { background-color: #ecfdf5; color: var(--color-success); }
+
+        .portal-card:hover .icon-wrapper {
+            transform: scale(1.1) rotate(3deg);
+        }
+        
+        .card-employee:hover .icon-wrapper { background-color: var(--color-primary); color: #ffffff; }
+        .card-server:hover .icon-wrapper { background-color: #f59e0b; color: #ffffff; }
+        .card-boss:hover .icon-wrapper { background-color: var(--color-success); color: #ffffff; }
+
+        .card-badge-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card-badge {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 3px 8px;
+            border-radius: 6px;
+            background-color: #f1f5f9;
+            color: #475569;
+        }
+
+        /* Nâng cấp Lưới Tính năng Spec Grid */
+        .spec-section {
+            margin-top: 70px;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 50px;
+        }
+
+        .spec-title {
+            text-align: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 32px;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .spec-item {
+            background: #ffffff;
+            border: 1px solid #f1f5f9;
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            gap: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+
+        .spec-icon {
+            font-size: 24px;
+            color: var(--color-primary);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .spec-info h4 {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .spec-info p {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .btn-portal-action {
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            cursor: pointer;
+        }
+
+        .btn-employee-color { background-color: var(--color-primary); color: #ffffff; }
+        .btn-employee-color:hover { background-color: var(--color-primary-hover); box-shadow: 0 4px 14px rgba(0, 132, 255, 0.25); }
+
+        .btn-server-color { background-color: transparent; border-color: #f59e0b; color: #d97706; }
+        .btn-server-color:hover { background-color: #fffbeb; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15); }
+
+        .btn-boss-color { background-color: var(--color-success); color: #ffffff; }
+        .btn-boss-color:hover { background-color: #059669; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25); }
+    </style>
+</head>
+<body style="overflow-y: auto;">
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <div class="brand-icon"><i class='bx bx-shield-quarter'></i></div>
+            <span class="brand-name">Zero-Knowledge Corporate Messenger</span>
+        </a>
+        <div class="nav-links">
+            <span class="nav-badge" style="display: flex; align-items: center; gap: 4px;">
+                <span class="status-indicator online" style="margin-right: 0; width: 8px; height: 8px; position: static;"></span>
+                Hệ Thống Hoạt Động
+            </span>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <main class="container">
+        
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="compliance-tag">
+                <i class='bx bx-check-shield'></i> Tiêu chuẩn bảo mật mật mã FIT4012
+            </div>
+            <h1 class="hero-title">
+                Hệ Thống Giao Tiếp & Gửi Báo Cáo <span>Zero-Knowledge</span>
+            </h1>
+            <p class="hero-desc">
+                Giải pháp truyền thông điệp và truyền tệp tin nội bộ bảo mật tuyệt đối dành cho doanh nghiệp. Bảo vệ dữ liệu nhạy cảm khỏi rò rỉ ngay cả khi máy chủ trung gian bị thỏa hiệp.
+            </p>
+        </div>
+
+        <!-- Portal Cards Grid -->
+        <div class="portal-grid">
+            
+            <!-- Card 1: Nhân viên (Sender) -->
+            <div class="portal-card card-employee">
+                <div class="portal-body">
+                    <div class="icon-wrapper">
+                        <i class='bx bx-paper-plane'></i>
+                    </div>
+                    <div class="card-badge-row">
+                        <span class="card-badge">Phía Gửi</span>
+                        <span class="card-badge">Alice Portal</span>
+                    </div>
+                    <h2 class="card-title">Cổng Nhân Viên</h2>
+                    <p class="card-text">
+                        Soạn thảo tin nhắn bí mật, đính kèm tệp tin Excel, Word, văn bản. Sinh cặp khóa ECDH và tiến hành mã hóa dữ liệu đầu cuối trực tiếp tại thiết bị gửi.
+                    </p>
+                    <a href="/employee" class="btn-portal-action btn-employee-color">
+                        Đăng nhập Cổng gửi <i class='bx bx-right-arrow-alt'></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 2: Server Admin -->
+            <div class="portal-card card-server">
+                <div class="portal-body">
+                    <div class="icon-wrapper">
+                        <i class='bx bx-terminal'></i>
+                    </div>
+                    <div class="card-badge-row">
+                        <span class="card-badge">Kiểm Toán</span>
+                        <span class="card-badge">Server Console</span>
+                    </div>
+                    <h2 class="card-title">Relay Dashboard</h2>
+                    <p class="card-text">
+                        Giám sát luồng thông tin chuyển tiếp, kiểm toán nhật ký giao dịch, quản trị bộ nhớ đệm Nonce chống replay và phân phối khóa công khai ECDH của hệ thống.
+                    </p>
+                    <a href="/server" class="btn-portal-action btn-server-color">
+                        Truy cập Console <i class='bx bx-right-arrow-alt'></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 3: Sếp (Recipient) -->
+            <div class="portal-card card-boss">
+                <div class="portal-body">
+                    <div class="icon-wrapper">
+                        <i class='bx bx-lock-open-alt'></i>
+                    </div>
+                    <div class="card-badge-row">
+                        <span class="card-badge">Phía Nhận</span>
+                        <span class="card-badge">Bob Portal</span>
+                    </div>
+                    <h2 class="card-title">Cổng Ban Giám Đốc</h2>
+                    <p class="card-text">
+                        Xem hàng đợi gói tin mã hóa. Thiết lập thỏa thuận khóa giải mã ECDH, giải mã nội dung tin nhắn và tự động khôi phục tải về các tệp tin báo cáo.
+                    </p>
+                    <a href="/boss" class="btn-portal-action btn-boss-color">
+                        Đăng nhập Cổng nhận <i class='bx bx-right-arrow-alt'></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Security Specifications Grid -->
+        <div class="spec-section">
+            <h3 class="spec-title">Kiến Trúc Bảo Mật Zero-Knowledge Relay</h3>
+            
+            <div class="spec-grid">
+                
+                <div class="spec-item">
+                    <div class="spec-icon"><i class='bx bx-key'></i></div>
+                    <div class="spec-info">
+                        <h4>Mã Hóa Đầu Cuối (E2EE)</h4>
+                        <p>Dữ liệu tin nhắn và file nhị phân được mã hóa bằng thuật toán <strong>AES-GCM-256</strong> với khóa đối xứng duy nhất được dẫn xuất qua giao thức thỏa thuận khóa <strong>ECDH secp256r1 (P-256)</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <div class="spec-icon"><i class='bx bx-low-vision'></i></div>
+                    <div class="spec-info">
+                        <h4>Nguyên Lý Zero-Knowledge</h4>
+                        <p>Server trung gian chỉ đóng vai trò chuyển tiếp bản mã (Ciphertext) và siêu dữ liệu kiểm toán. Server hoàn toàn không có khóa riêng tư ECDH và không thể xem được bất kỳ nội dung báo cáo nào ở dạng rõ.</p>
+                    </div>
+                </div>
+
+                <div class="spec-item">
+                    <div class="spec-icon"><i class='bx bx-shield-quarter'></i></div>
+                    <div class="spec-info">
+                        <h4>Chặn Tấn Công Phát Lại & Can Thiệp</h4>
+                        <p>Sử dụng cửa sổ trượt thời gian (Sliding Window) kết hợp lưu vết Nonce giao dịch ngăn chặn tuyệt đối hacker nghe lén phát lại (Replay Attack). Xác thực nhãn Galois ngăn chặn can thiệp sửa đổi tệp (Tampering).</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2026 ZKRS Enterprise System. Thiết kế văn phòng tuân thủ tiêu chuẩn an toàn mật mã học FIT4012.</p>
+    </footer>
+
+</body>
+</html>

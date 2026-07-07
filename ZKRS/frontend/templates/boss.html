@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Portal - ZKRS Messenger</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Boxicons CDN link -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/static/css/style.css?v=2.2">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="/" class="nav-brand">
+            <div class="brand-icon"><i class='bx bx-shield-quarter'></i></div>
+            <span class="brand-name">Zero-Knowledge Corporate Messenger</span>
+        </a>
+        <div class="nav-links">
+            <span class="nav-badge">Kênh Truyền: Sếp &larr; Nhân Viên</span>
+        </div>
+    </nav>
+
+    <!-- Main Workspace Split Layout -->
+    <div class="split-layout">
+        
+        <!-- 1. Left Sidebar: Contacts -->
+        <aside class="chat-sidebar">
+            <div class="sidebar-header">
+                <h2>Chats</h2>
+            </div>
+            <div class="contact-list">
+                <div class="contact-item active">
+                    <div class="contact-avatar-wrapper">
+                        <div class="contact-avatar bg-employee">N</div>
+                        <span class="status-dot online"></span>
+                    </div>
+                    <div class="contact-info">
+                        <div class="contact-name">Nhân viên (Alice)</div>
+                        <div class="contact-last-msg">Người gửi báo cáo</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 2. Center Panel: Chat Window -->
+        <section class="chat-pane">
+            <div class="chat-header">
+                <div class="chat-user-details">
+                    <div class="contact-avatar bg-employee" style="width: 38px; height: 38px; font-size: 14px;">N</div>
+                    <div>
+                        <div class="chat-user-name">Nhân viên (Alice)</div>
+                        <div class="chat-user-status">
+                            <span class="status-indicator online"></span>
+                            <span>Kết nối trực tiếp E2EE</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <button id="btn-fetch" class="btn btn-outline" style="padding: 6px 12px; font-size: 12px; height: 32px;">
+                        <i class='bx bx-refresh'></i> Kiểm tra hàng chờ
+                    </button>
+                    <div id="status-alert-box" class="alert alert-info" style="margin-bottom: 0; padding: 6px 12px; font-size: 11.5px;">
+                        Đang tạo khóa...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Messages stream -->
+            <div class="message-stream" id="chat-messages">
+                <div class="message-bubble-wrapper received">
+                    <div class="message-meta-info">Nhân viên (Alice)</div>
+                    <div class="message-bubble">
+                        Báo cáo sếp, em đã sẵn sàng gửi các văn bản báo cáo nhạy cảm lên đây rồi ạ.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fake input area for Bob (since Bob is recipient only in this demo, but looks neat) -->
+            <div class="chat-input-bar">
+                <input type="text" class="chat-input" placeholder="Bạn chỉ có quyền đọc & giải mã tài liệu trong phân hệ này..." readonly style="cursor: not-allowed; opacity: 0.6;">
+                <button class="btn-send" style="cursor: not-allowed; opacity: 0.6;" disabled>
+                    &rarr;
+                </button>
+            </div>
+        </section>
+
+        <!-- 3. Right Sidebar: Cryptography & Attack Scenarios -->
+        <aside class="right-sidebar">
+            
+            <div class="crypto-details">
+                <h3>🔑 Thông Số Khóa Doanh Nghiệp</h3>
+                <div class="crypto-row">
+                    <span class="crypto-label">Vai trò:</span>
+                    <span class="crypto-value">Sếp (Bob)</span>
+                </div>
+                <div class="crypto-row">
+                    <span class="crypto-label">Đường cong ECC:</span>
+                    <span class="crypto-value">secp256r1 (P-256)</span>
+                </div>
+                <div class="crypto-row">
+                    <span class="crypto-label">Khóa Công Khai:</span>
+                    <span class="crypto-value" id="bob-pub-key-display">Đang tạo...</span>
+                </div>
+                <div class="crypto-row">
+                    <span class="crypto-label">Khóa đối xứng phục hồi:</span>
+                    <span class="crypto-value text-green" id="bob-derived-key-display">Chưa khôi phục</span>
+                </div>
+            </div>
+
+            <div class="dev-options">
+                <h4>Kiểm Thử Đường Truyền (MITM Attack)</h4>
+                <div class="dev-buttons">
+                    <button id="btn-scenario-normal" class="btn btn-outline active">Dữ liệu nguyên vẹn</button>
+                    <button id="btn-scenario-tamper" class="btn btn-outline">Sửa đổi Ciphertext (Tamper Attack)</button>
+                </div>
+            </div>
+
+            <div style="font-size: 12px; color: var(--text-secondary); line-height: 1.5; border-top: 1px solid var(--border-color); padding-top: 16px;">
+                <strong>Xác thực tính toàn vẹn:</strong> Hệ thống tự động kiểm tra chữ ký đa thức Galois của AES-GCM. Nếu một byte nhỏ nhất của file bị sửa đổi trong quá trình chuyển tiếp, nút giải mã sẽ báo lỗi từ chối ngay lập tức.
+            </div>
+
+        </aside>
+
+    </div>
+
+    <!-- Biometric Authentication Modal (FIDO2 / WebAuthn Simulation & Real Hello) -->
+    <div id="biometric-modal" class="modal-backdrop hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <i class='bx bx-fingerprint' style='font-size: 54px; color: var(--color-primary);'></i>
+                <h3>Xác Thực Vân Tay Bảo Mật</h3>
+                <p>Hệ thống yêu cầu xác nhận hiện diện vật lý để tiến hành giải mã báo cáo doanh nghiệp.</p>
+            </div>
+            
+            <div class="modal-body-content">
+                <!-- Visual Fingerprint Scanner Area -->
+                <div class="scanner-container" id="scanner-box">
+                    <i class='bx lx-fingerprint scanner-icon'><i class='bx bx-fingerprint'></i></i>
+                    <div class="scanner-laser" id="scanner-laser"></div>
+                </div>
+                
+                <div id="biometric-status" class="biometric-status-msg">
+                    Sẵn sàng quét vân tay...
+                </div>
+            </div>
+            
+            <div class="modal-actions-list">
+                <button id="btn-scan-simulated" class="btn-modal-action btn-employee-color">
+                    <i class='bx bx-play-circle'></i> Quét Vân Tay Giả Lập (Bản Demo)
+                </button>
+                <button id="btn-scan-native" class="btn-modal-action btn-server-color" style="border: 1px solid #f59e0b; color: #d97706; background: transparent;">
+                    <i class='bx bx-shield-plus'></i> Gọi Windows Hello (WebAuthn Thật)
+                </button>
+                <button id="btn-close-modal" class="btn" style="margin-top: 12px; background: transparent; color: var(--text-secondary); font-size:12.5px; padding: 4px; border:none; box-shadow:none;">
+                    Hủy giao dịch
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script loading -->
+    <script src="/static/js/boss.js?v=2.2"></script>
+</body>
+</html>
